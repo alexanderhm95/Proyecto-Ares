@@ -1,0 +1,26 @@
+{% extends 'master.html' %} {% block contenido %}
+<div class="form-horizontal" style=" margin: 0 auto; width: 50%; margin-top: 10px; margin-bottom: 10px; background-color:aquamarine;">
+    <form id="imprimir" class="form-check" method="POST">
+
+
+        <h5>Venta N°: {{reporte.vent_id}}</h5>
+        <h5>Propietario: {{cliente.apellidos}} {{cliente.nombres}}</h5>
+        <h5>Direccion: {{cliente.direccion}} </h5>
+        <h5>Vehiculo: {{vehiculo.placas}}</h5>
+        <hr style="border:15px; width: 95%;">
+        <hr style="border:2px; width: 95%;">
+        <h5>Nom_producto: {{producto.nombre}}</h5>
+        <h5>N° galones: {{detalle.ngalones}}</h5>
+        <h5>Precio: {{producto.precio}}</h5>
+        <h5>Total: {{reporte.total}}</h5>
+
+
+
+    </form>
+    <a href="javascript:imprSelec('imprimir')" type="button" class="btn btn-success">Imprimir</a>
+
+
+    <a href="{% url 'listarVentas' %}" type="button" class="btn btn-secondary">Cancelar</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'master.html' %} {% block contenido %}
+<div class="form-horizontal" style=" margin: 0 auto; width: 50%; margin-top: 10px; margin-bottom: 10px; background-color:aquamarine;">
+    <form class="form-check" method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <h5>Registro Producto</h5>
+            {{formulario_producto.as_p}}
+        </div>
+        <button href="{% url 'productos'%}" type="submit" class="btn btn-primary">Registrar</button>
+
+
+    </form>
+
+</div>
+
+{% endblock %}

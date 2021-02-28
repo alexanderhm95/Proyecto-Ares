@@ -1,0 +1,46 @@
+ {% extends 'master.html' %} {% block contenido %}
+<div class="row fa-align-center " style="align-items: center;">
+    <h1>Vehiculos:</h1>
+    <h5>{{cliente.nombres}} {{cliente.apellidos}}</h5>
+</div>
+
+<form method="post">{% csrf_token %}
+    <input name="busqueda" placeholder="Ingrese su búsqueda">
+    <button type="submit">Buscar</button>
+</form>
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Cedula</th>
+            <th>Nombres Apellidos</th>
+            <th>Placas</th>
+            <th colspan="2" style="align-items: center;">Opciones</th>
+
+        </tr>
+    </thead>
+    <tbody class="table-secondary">
+        {% for car in vehiculo %}
+        <tr>
+
+            <td><a href="#">{{cliente.cedula}}</a></td>
+            <td>{{cliente.nombres}} {{cliente.apellidos}}</td>
+            <td>{{car.placas}}</td>
+
+
+            <td colspan="2"><a href="{% url 'eliminarVehiculo' car.vehiculo_id %}" onClick="return confirm('¿Seguro que quieres borrar a {{cliente.nombres}}?');">
+                Eliminar
+            </a>
+                <a href="{% url 'modificarVehiculo' car.vehiculo_id %}" onClick="return confirm('¿Seguro que quieres borrar a {{cliente.nombres}}?');">
+                Modificar
+            </a></td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div>
+    <a href="{% url 'crearVehiculo' cliente.cedula%}" type="button" class="btn btn-primary">ADD</a>
+
+    <a href="{% url 'home_page'%}" type="button" class="btn btn-secondary">HOME</a>
+</div>
+{% endblock %}

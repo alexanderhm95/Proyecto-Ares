@@ -1,0 +1,26 @@
+{% extends 'master.html' %} {% block contenido %}
+<div class="form-horizontal" style=" margin: 0 auto; width: 50%; margin-top: 10px; margin-bottom: 10px; background-color:aquamarine;">
+    <form class="form-check" method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <h5>Crear Cliente</h5>
+            {{formulario_cliente.as_p}}
+        </div>
+        <hr style="border:15px; width: 95%;">
+        <hr style="border:2px; width: 95%;">
+        <div class="row">
+
+            <h5>Vehiculo</h5>
+            {{formulario_vehiculo.as_p}}
+        </div>
+
+
+
+        <button href="{% url 'clientes'%}" type="submit" class="btn btn-primary">Registrar</button>
+
+        <a href="{% url 'home_page'%}" type="button" class="btn btn-secondary">HOME</a>
+    </form>
+
+</div>
+
+{% endblock %}

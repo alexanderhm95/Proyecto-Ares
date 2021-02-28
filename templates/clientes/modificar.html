@@ -1,0 +1,13 @@
+{% extends 'master.html' %} {% block contenido %}
+<h2>Usuario a Modificar {{cliente.cedula}}</h2>
+<div class="form-horizontal" style=" margin: 0 auto; width: 50%; margin-top: 10px; margin-bottom: 10px; background-color:aquamarine;">
+
+    <form class="form-check" method="POST">
+
+        {% csrf_token %} {{formulario_cliente_editar.as_p}}
+        <button href="{% url 'clientes'%}" type="submit" value="Guardar" class="btn btn-primary">Guardar</button>
+
+
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+ {% extends 'master.html' %} {% block contenido %}
+<div class="row fa-align-center " style="align-items: center;">
+    <h1>Clientes</h1>
+</div>
+
+<form method="post">{% csrf_token %}
+    <input name="busqueda" placeholder="Ingrese su búsqueda">
+    <button type="submit">Buscar</button>
+</form>
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>N° venta</th>
+            <th>Propietario </th>
+            <th>Vehiculo</th>
+            <th>Producto</th>
+            <th>N° galones</th>
+            <th>Precio</th>
+            <th>Total</th>
+            <th colspan="2">Opciones</th>
+
+            <th>Imprimir</th>
+
+        </tr>
+    </thead>
+    <tbody class="table-secondary">
+        {% for rep in listarventas %}
+        <tr>
+            <td><a href="#">{{rep.vent_id}}</a></td>
+            <td>{{rep.vehiculo.cliente.apellidos}} {{rep.vehiculo.cliente.nombres}}</td>
+            <td>{{rep.vehiculo.placas}}</td>
+
+            <td>{{rep.detalle.producto.nombre}}</td>
+            <td>{{rep.detalle.ngalones}}</td>
+            <td>{{rep.detalle.producto.precio}}</td>
+            <td> {{rep.total}}</td>
+
+            <td colspan="2">
+                <a href="{% url 'eliminarVentas' rep.vent_id %}" onClick="return confirm('¿Seguro que quieres borrar la venta {{rep.vent_id}}?');">
+                Eliminar
+            </a></td>
+            <td><a href="{% url 'reporte' rep.vent_id %}" type="button" class="btn btn-primary">Ver</a></td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div>
+    <a href="#" type="button" class="btn btn-primary">ADD</a>
+    <a href="{% url 'home_page'%}" type="button" class="btn btn-secondary">HOME</a>
+</div>
+{% endblock %}

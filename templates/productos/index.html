@@ -1,0 +1,47 @@
+ {% extends 'master.html' %} {% block contenido %}
+<div class="row fa-align-center " style="align-items: center;">
+    <h1>Productos</h1>
+</div>
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Existencia</th>
+
+            <th>Estado</th>
+            <th colspan="2">Opciones</th>
+
+            <th>Ventas</th>
+
+
+        </tr>
+    </thead>
+    <tbody class="table-secondary">
+        {% for producto in listaproductos %}
+        <tr>
+            <td>{{producto.nombre}}</td>
+            <td>{{producto.precio}}</td>
+            <td>{{producto.existencia}}</td>
+
+            <td>{{producto.estado}}</td>
+
+            <td colspan="2">
+                <a href="{% url 'modificarProductos' producto.prod_id %}" onClick="return confirm('¿Seguro que quieres borrar a {{producto.nombre}}?');">
+                Modificar
+            </a>
+                <a href="{% url 'eliminarProductos' producto.prod_id %}" onClick="return confirm('¿Seguro que quieres borrar a {{producto.nombre}}?');">
+                Eliminar
+            </a></td>
+            <td><a href="{% url 'crearVenta' producto.prod_id %}" type="button" class="btn btn-success">Vender</a></td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div>
+    <a href="{% url 'crearProducto' %}" type="button" class="btn btn-primary">ADD</a>
+
+    <a href="{% url 'home_page'%}" type="button" class="btn btn-secondary">HOME</a>
+</div>
+{% endblock %}
